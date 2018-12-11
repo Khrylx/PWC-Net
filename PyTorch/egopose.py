@@ -57,6 +57,7 @@ def visualize_flow(flo, vis_fn):
 	rgb = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
 	cv2.imwrite(vis_fn, rgb)
 
+
 im1_fn = 'data/frame_0010.png';
 im2_fn = 'data/frame_0011.png';
 vis_fn = 'data/vis_flow.png';
