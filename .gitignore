@@ -1,1 +1,6 @@
-.idea/*
+data/
+external_packages/
+models/
+tmp/
+.*
+
