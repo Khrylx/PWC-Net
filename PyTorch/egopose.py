@@ -10,7 +10,7 @@ import os
 import glob
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--mocap-id', type=str, default='mocap1205')
+parser.add_argument('--mocap-id', type=str, default='1205')
 args = parser.parse_args()
 
 
@@ -64,12 +64,14 @@ def visualize_flow(flo, vis_fn):
 	cv2.imwrite(vis_fn, rgb)
 
 
-fpv_frames_folder = os.path.expanduser('~/datasets/egopose/%s/fpv_frames' % args.mocap_id)
-fpv_of_folder = os.path.expanduser('~/datasets/egopose/%s/fpv_of' % args.mocap_id)
+fpv_frames_folder = os.path.expanduser('~/datasets/egopose/fpv_frames')
+fpv_of_folder = os.path.expanduser('~/datasets/egopose/fpv_of')
 if not os.path.exists(fpv_of_folder):
 	os.makedirs(fpv_of_folder)
-take_folders = filter(lambda x: x[0] != '.', os.listdir(fpv_frames_folder))
+take_folders = glob.glob('%s/%s_*' % (fpv_frames_folder, args.mocap_id))
 take_folders.sort()
+for folder in take_folders:
+	print(folder)
 
 for folder in take_folders:
 	flo_folder = os.path.join(fpv_of_folder, folder)
