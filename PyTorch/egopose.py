@@ -68,7 +68,7 @@ fpv_frames_folder = os.path.expanduser('~/datasets/egopose/fpv_frames')
 fpv_of_folder = os.path.expanduser('~/datasets/egopose/fpv_of')
 if not os.path.exists(fpv_of_folder):
 	os.makedirs(fpv_of_folder)
-take_folders = glob.glob('%s/%s_*' % (fpv_frames_folder, args.mocap_id))
+take_folders = [os.path.basename(x) for x in glob.glob('%s/%s_*' % (fpv_frames_folder, args.mocap_id))]
 take_folders.sort()
 for folder in take_folders:
 	print(folder)
