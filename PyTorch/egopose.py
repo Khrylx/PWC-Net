@@ -80,7 +80,7 @@ for folder in take_folders:
 	frames = glob.glob(os.path.join(fpv_frames_folder, folder, '*.png'))
 	frames.sort()
 	im1 = cv2.imread(frames[0])
-	for i in range(0, len(frames - 1)):
+	for i in range(0, len(frames) - 1):
 		im2 = cv2.imread(frames[i + 1])
 		flo = get_flow(im1, im2)
 		print(i, np.min(flo), np.max(flo))
