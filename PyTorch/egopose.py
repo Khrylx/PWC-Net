@@ -79,14 +79,14 @@ for folder in take_folders:
 		os.makedirs(flo_folder)
 	frames = glob.glob(os.path.join(fpv_frames_folder, folder, '*.png'))
 	frames.sort()
-	im2 = cv2.imread(frames[0])
-	for i in range(1, len(frames)):
-		im1 = cv2.imread(frames[i])
+	im1 = cv2.imread(frames[0])
+	for i in range(0, len(frames - 1)):
+		im2 = cv2.imread(frames[i + 1])
 		flo = get_flow(im1, im2)
-		print(i - 1, np.min(flo), np.max(flo))
-		np.save('%s/%05d.npy' % (flo_folder, i - 1), flo)
-		visualize_flow(flo, '%s/%05d.png' % (flo_folder, i - 1))
-		im2 = im1
+		print(i, np.min(flo), np.max(flo))
+		np.save('%s/%05d.npy' % (flo_folder, i), flo)
+		visualize_flow(flo, '%s/%05d.png' % (flo_folder, i))
+		im1 = im2
 
 
 
